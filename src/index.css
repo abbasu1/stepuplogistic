@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 240 10% 3.9%;
+  --surface: 240 10% 7%;
+  --text: 0 0% 98%;
+  --muted: 240 5% 64.9%;
+  --stroke: 240 6% 14.9%;
+  --accent: 217 91% 60%;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-accent/20 selection:text-accent overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tighter;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-accent-gradient;
+  }
+
+  .bg-blob {
+    @apply absolute blur-[120px] rounded-full opacity-20 pointer-events-none transition-all duration-1000;
+  }
+
+  .noise-overlay {
+    @apply fixed inset-0 z-[9999] pointer-events-none opacity-[0.4] mix-blend-soft-light;
+    background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  }
+
+  .glass-premium {
+    @apply bg-surface/30 backdrop-blur-2xl border border-white/5 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5)];
+  }
+
+  .text-reveal-mask {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .magnetic-button {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-surface/20 backdrop-blur-xl border border-white/5 shadow-2xl;
+    background-image: radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent);
+  }
+
+  .btn-premium {
+    @apply px-12 py-6 rounded-full bg-blue-600 text-white font-black text-lg transition-all duration-500 
+           hover:bg-blue-500 hover:scale-[1.05] active:scale-[0.95] 
+           shadow-[0_20px_50px_rgba(59,130,246,0.3)] hover:shadow-[0_30px_70px_rgba(59,130,246,0.5)];
+  }
+
+  .btn-outline-premium {
+    @apply px-12 py-6 rounded-full border border-white/10 bg-white/5 text-white font-black text-lg 
+           transition-all duration-500 hover:bg-white/10 hover:border-white/20 
+           hover:scale-[1.05] backdrop-blur-md;
+  }
+
+  .bento-card {
+    @apply relative overflow-hidden rounded-[3.5rem] border border-white/5 bg-surface/10 transition-all duration-700 hover:border-white/20;
+    backdrop-filter: blur(20px);
+  }
+
+  .pill {
+    @apply rounded-full flex items-center justify-center transition-all duration-500 font-black uppercase tracking-widest text-[10px];
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-500/20 rounded-full hover:bg-blue-500/40 transition-colors;
+}
+
+/* Animations */
+@keyframes reveal-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-reveal {
+  animation: reveal-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
