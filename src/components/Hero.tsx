@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import VideoPlayer from './VideoPlayer';
 import { COMPANY_NAME, TAGLINE, ROLES, HERO_VIDEO_SRC } from '../utils/constants';
 
@@ -17,7 +17,7 @@ const Hero: React.FC<HeroProps> = ({ isStarted }) => {
     return () => clearInterval(roleInterval);
   }, []);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -28,12 +28,12 @@ const Hero: React.FC<HeroProps> = ({ isStarted }) => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 100, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
     },
   };
 

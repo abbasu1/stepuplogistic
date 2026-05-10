@@ -12,8 +12,9 @@ const FleetGallery: React.FC = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const items = gsap.utils.toArray('.gallery-item');
-      items.forEach((item: any) => {
-        gsap.fromTo(item.querySelector('img'), 
+      items.forEach((item) => {
+        const el = item as HTMLElement;
+        gsap.fromTo(el.querySelector('img'), 
           { y: -50 },
           { 
             y: 50,

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { COMPANY_NAME } from '../utils/constants';
 
+const words = ["Dispatch", "Freight", "Routes"];
+
 const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const [counter, setCounter] = useState(0);
-  const words = ["Dispatch", "Freight", "Routes"];
   const [currentWord, setCurrentWord] = useState(0);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
     });
 
     // Counter animation
-    let count = { value: 0 };
+    const count = { value: 0 };
     gsap.to(count, {
       value: 100,
       duration: 2.7,
