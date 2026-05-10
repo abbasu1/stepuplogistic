@@ -14,19 +14,22 @@ const FleetGallery: React.FC = () => {
       const items = gsap.utils.toArray('.gallery-item');
       items.forEach((item) => {
         const el = item as HTMLElement;
-        gsap.fromTo(el.querySelector('img'), 
-          { y: -50 },
-          { 
-            y: 50,
-            ease: "none",
-            scrollTrigger: {
-              trigger: item,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true
+        const img = el.querySelector('img');
+        if (img) {
+          gsap.fromTo(img, 
+            { y: -50 },
+            { 
+              y: 50,
+              ease: "none",
+              scrollTrigger: {
+                trigger: el,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+              }
             }
-          }
-        );
+          );
+        }
       });
     }, containerRef);
 
